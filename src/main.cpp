@@ -8,9 +8,9 @@
 #include "Vertex.h"
 #include "Board.h"
 
-#define RECTANGLE           1
+#define RECTANGLE           0
 #define TRIANGLE            0
-#define ISOSCELES_TRIANGLE  0
+#define ISOSCELES_TRIANGLE  1
 #define WINDOW              0
 
 #if RECTANGLE

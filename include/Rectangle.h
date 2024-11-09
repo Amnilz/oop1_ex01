@@ -24,9 +24,9 @@ public:
     Vertex getCenter() const; 
     bool scale(double factor);
     void setDefault(); 
-    bool isValidRectangle(const Vertex& bottomLeft, const Vertex& topRight) const; // Validates the rectangle vertices
-    Vertex checkChange(const Vertex& center, const Vertex& v1, double factor) const; // Helper for scaling calculation
-    void initializeRectangle(const Vertex& bottomLeft, const Vertex& topRight); // Initializes the rectangle with vertices
+    bool isValidRectangle(const Vertex& bottomLeft, const Vertex& topRight) const; 
+    Vertex checkChange(const Vertex& center, const Vertex& v1, double factor) const; 
+    void initializeRectangle(const Vertex& bottomLeft, const Vertex& topRight); 
 
 private:
     Vertex m_bottomLeft;
