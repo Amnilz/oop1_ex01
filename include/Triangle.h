@@ -5,7 +5,7 @@
 
 
 
-
+/**
 
 
 class Triangle
@@ -26,7 +26,7 @@ private:
 
 	
 
-};
+};*/
 
 
 
