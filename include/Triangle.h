@@ -12,7 +12,6 @@ public:
 	Triangle(const Vertex vertices[3]);
 	Triangle(Vertex v0, Vertex v1, Vertex v2);
 
-
 	Vertex getVertex(int index) const;
 	bool isValidTriangle(const Vertex& v1, const Vertex& v2, const Vertex& v3) const;
 	void initializeTriangle(const Vertex& v1, const Vertex& v2, const Vertex& v3);

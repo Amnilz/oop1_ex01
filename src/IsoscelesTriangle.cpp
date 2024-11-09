@@ -15,10 +15,10 @@ IsoscelesTriangle::IsoscelesTriangle(const Vertex vertices[3])
 IsoscelesTriangle::IsoscelesTriangle(Vertex left, Vertex right, double height) 
 {
     
-    double midX = (left.m_col + right.m_col) / 2;
+    double midX = (left.m_col + right.m_col)/2;
     double topY = left.m_row + height;
     Vertex top(midX, topY);
-    initializeTriangle(left, right, top);
+    initializeTriangle(left,right,top);
 }
 Vertex IsoscelesTriangle::getCenter() const
 {
@@ -86,8 +86,8 @@ bool IsoscelesTriangle::isValidTriangle(const Vertex& v0, const Vertex& v1, cons
 }
 bool IsoscelesTriangle::isBaseParallelToX(const Vertex& v1, const Vertex& v2) const
 {
-    const double epsilon = 0.1;
-    return std::abs(v1.m_row - v2.m_row) < epsilon;
+    
+    return doubleEqual(v1.m_row, v2.m_row);
 }
 void IsoscelesTriangle::setDefault()
 {

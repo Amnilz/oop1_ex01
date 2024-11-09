@@ -69,7 +69,25 @@ Rectangle Window::getBoundingRectangle() const
 
 double Window::getPerimeter() const
 {
-	return m_rectangle.getPerimeter();
+	double widths[] = { m_windowPoint.m_col - m_rectangle.getBottomLeft().m_col,
+						m_rectangle.getTopRight().m_col - m_windowPoint.m_col,
+						m_windowPoint.m_col - m_rectangle.getBottomLeft().m_col,
+						m_rectangle.getTopRight().m_col - m_windowPoint.m_col };
+
+	double heights[] = { m_windowPoint.m_row - m_rectangle.getBottomLeft().m_row,
+						 m_windowPoint.m_row - m_rectangle.getBottomLeft().m_row,
+						 m_rectangle.getTopRight().m_row - m_windowPoint.m_row,
+						 m_rectangle.getTopRight().m_row - m_windowPoint.m_row };
+
+	double totalPerimeter = 0;
+
+	
+	for (int i = 0; i < 4; ++i)
+	{
+		totalPerimeter += 2 * (widths[i] + heights[i]);
+	}
+
+	return totalPerimeter;
 }
 
 double Window::getArea() const

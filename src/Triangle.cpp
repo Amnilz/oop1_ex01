@@ -53,8 +53,7 @@ void Triangle::initializeTriangle(const Vertex& v0, const Vertex& v1, const Vert
 
 bool Triangle::isBaseParallelToX(const Vertex& v1, const Vertex& v2) const 
 {
-    const double epsilon = 0.1;
-    return std::abs(v1.m_row - v2.m_row) < epsilon;
+    return doubleEqual(v1.m_row, v2.m_row);
 }
 
 double Triangle::getLength(int index) const 
