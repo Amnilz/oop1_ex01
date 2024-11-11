@@ -3,10 +3,11 @@
 #include "Board.h" 
 
 
+
 class Rectangle
 {
 public:
-  
+    
     Rectangle(const Vertex& bottomLeft, const Vertex& topRight);
     Rectangle(const Vertex vertices[2]);
     Rectangle(const Vertex& topRight, double width, double height);
@@ -23,12 +24,14 @@ public:
     double getArea() const; 
     Vertex getCenter() const; 
     bool scale(double factor);
-    void setDefault(); 
-    bool isValidRectangle(const Vertex& bottomLeft, const Vertex& topRight) const; 
-    Vertex checkChange(const Vertex& center, const Vertex& v1, double factor) const; 
-    void initializeRectangle(const Vertex& bottomLeft, const Vertex& topRight); 
+   
+   
 
 private:
+    bool isValidRectangle(const Vertex& bottomLeft, const Vertex& topRight) const;
+    Vertex checkChange(const Vertex& center, const Vertex& v1, double factor) const;
+    void initializeRectangle(const Vertex& bottomLeft, const Vertex& topRight);
+
     Vertex m_bottomLeft;
     Vertex m_topRight;
 };

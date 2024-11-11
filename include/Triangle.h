@@ -1,38 +1,42 @@
 #pragma once
+
+#include "macros.h"
 #include "Vertex.h"
+#include "Board.h"
+#include "Utilities.h"
+#include <cmath>
 #include "Rectangle.h"
-
-
 
 
 
 class Triangle
 {
 public:
+	
+
 	Triangle(const Vertex vertices[3]);
 	Triangle(Vertex v0, Vertex v1, Vertex v2);
 
 	Vertex getVertex(int index) const;
-	bool isValidTriangle(const Vertex& v1, const Vertex& v2, const Vertex& v3) const;
-	void initializeTriangle(const Vertex& v1, const Vertex& v2, const Vertex& v3);
-	bool isBaseParallelToX(const Vertex& v1, const Vertex& v2) const;
-	double getLength(int index) const;
-	void draw(Board& board) const;
+	Vertex getCenter() const;
 	Rectangle getBoundingRectangle() const;
+	double getLength(int index) const;
 	double getPerimeter() const;
 	double getArea() const;
-	Vertex getCenter() const;
 	bool scale(double factor);
-	Vertex checkChange(const Vertex& center, const Vertex& vertex, double factor) const;
-	void setDefault();
+	void draw(Board& board) const;
 
 
 
 private:
 
-	Vertex m_v0;
-	Vertex m_v1;
-	Vertex m_v2;
+	Vertex checkChange(const Vertex& center, const Vertex& vertex, const double factor) const;
+	bool isValidTriangle(const Vertex& v1, const Vertex& v2, const Vertex& v3) const;
+	void initializeTriangle(const Vertex& v1, const Vertex& v2, const Vertex& v3);
+	
+	Vertex m_left;
+	Vertex m_right;
+	Vertex m_top;
 
 };
 

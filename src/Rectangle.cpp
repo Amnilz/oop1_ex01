@@ -16,47 +16,34 @@ Rectangle::Rectangle(const Vertex vertices[2])
 
 Rectangle::Rectangle(const Vertex& topRight, double width, double height)
 {
-    Vertex bottomLeft{ topRight.m_col - width, topRight.m_row - height };
-    initializeRectangle(bottomLeft, topRight);
+    initializeRectangle(Vertex(topRight.m_col - width,topRight.m_row - height), topRight);
 }
 
 Rectangle::Rectangle(double x, double y, double width, double height)
 {
-    Vertex bottomLeft{ x, y };
-    Vertex topRight{ x + width, y + height };
-    initializeRectangle(bottomLeft, topRight);
+    initializeRectangle(Vertex(x, y),Vertex(x + width, y + height));
 }
 
 void Rectangle::initializeRectangle(const Vertex& bottomLeft, const Vertex& topRight)
 {
-    if (isValidRectangle(bottomLeft, topRight)) {
-        m_bottomLeft = bottomLeft;
-        m_topRight = topRight;
+    if (!isValidRectangle(bottomLeft, topRight)) 
+    {
+        m_bottomLeft = Vertex(20, 10);
+        m_topRight = Vertex(30, 20);
+        return;
+        
     }
-    else {
-        setDefault();
-    }
+    m_bottomLeft = bottomLeft;
+    m_topRight = topRight;
 }
 
-Vertex Rectangle::getBottomLeft() const
-{
-    return m_bottomLeft;
-}
+Vertex Rectangle::getBottomLeft() const{return m_bottomLeft;}
 
-Vertex Rectangle::getTopRight() const
-{
-    return m_topRight;
-}
+Vertex Rectangle::getTopRight() const{return m_topRight;}
 
-double Rectangle::getWidth() const
-{
-    return m_topRight.m_col - m_bottomLeft.m_col;
-}
+double Rectangle::getWidth() const{return m_topRight.m_col - m_bottomLeft.m_col;}
 
-double Rectangle::getHeight() const
-{
-    return m_topRight.m_row - m_bottomLeft.m_row;
-}
+double Rectangle::getHeight() const{return m_topRight.m_row - m_bottomLeft.m_row;}
 
 bool Rectangle::isValidRectangle(const Vertex& bottomLeft, const Vertex& topRight) const
 {
@@ -69,27 +56,19 @@ void Rectangle::draw(Board& board) const
     Vertex vertices[] = { m_bottomLeft,
                           { m_topRight.m_col, m_bottomLeft.m_row },
                           m_topRight,
-                          { m_bottomLeft.m_col, m_topRight.m_row } };
+                          { m_bottomLeft.m_col, m_topRight.m_row }};
 
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < 4; ++i) 
+    {
         board.drawLine(vertices[i], vertices[(i + 1) % 4]);
     }
 }
 
-Rectangle Rectangle::getBoundingRectangle() const
-{
-    return Rectangle(m_bottomLeft, m_topRight);
-}
+Rectangle Rectangle::getBoundingRectangle() const{return Rectangle(m_bottomLeft, m_topRight);}
 
-double Rectangle::getPerimeter() const
-{
-    return 2 * (getWidth() + getHeight());
-}
+double Rectangle::getPerimeter() const{return 2 * (getWidth() + getHeight());}
 
-double Rectangle::getArea() const
-{
-    return getWidth() * getHeight();
-}
+double Rectangle::getArea() const{return getWidth() * getHeight();}
 
 Vertex Rectangle::getCenter() const
 {
@@ -111,13 +90,10 @@ bool Rectangle::scale(double factor)
 
 Vertex Rectangle::checkChange(const Vertex& center, const Vertex& v, double factor) const
 {
-    double xDistance = (center.m_col - v.m_col) * factor;
-    double yDistance = (center.m_row - v.m_row) * factor;
-    return Vertex(center.m_col - xDistance, center.m_row - yDistance);
-}
-
-void Rectangle::setDefault()
-{
-    m_bottomLeft = Vertex(20, 10);
-    m_topRight = Vertex(30, 20);
+    double xDistance = abs(center.m_col - v.m_col) * factor;
+    double yDistance = abs(center.m_row - v.m_row) * factor;
+    double xPos = v.isToTheRightOf(center) ? center.m_col + xDistance : center.m_col - xDistance;
+    double yPos = v.isHigherThan(center) ? center.m_row + yDistance : center.m_row - yDistance;
+	return Vertex(xPos, yPos);
+   
 }
