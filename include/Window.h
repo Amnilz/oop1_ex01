@@ -1,7 +1,11 @@
+#pragma once
+
 #include "Vertex.h"
 #include "Rectangle.h"
 #include "Board.h"
-
+#include "Utilities.h"
+#include "macros.h" 
+    
 
 
 class Window 

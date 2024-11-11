@@ -1,8 +1,3 @@
-#include "macros.h"
-#include "Vertex.h"
-#include "Board.h"
-#include "Rectangle.h"
-#include "Utilities.h"
 #include "Window.h"
 
 
@@ -43,8 +38,7 @@ void Window::draw(Board& board) const
 
 void Window::setDefault()
 {
-	m_rectangle.getBottomLeft() = Vertex(20, 10);
-	m_rectangle.getTopRight() = Vertex(30, 20);
+	m_rectangle = Rectangle (Vertex(20,10),Vertex(30,20));
 	m_windowPoint = Vertex(25, 15);
 }
 

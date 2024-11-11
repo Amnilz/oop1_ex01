@@ -1,8 +1,5 @@
-#include "macros.h"
-#include "Vertex.h"
-#include "Board.h"
 #include "Rectangle.h"
-#include "Utilities.h"
+
 
 Rectangle::Rectangle(const Vertex& bottomLeft, const Vertex& topRight)
 {
@@ -21,7 +18,7 @@ Rectangle::Rectangle(const Vertex& topRight, double width, double height)
 
 Rectangle::Rectangle(double x, double y, double width, double height)
 {
-    initializeRectangle(Vertex(x, y),Vertex(x + width, y + height));
+    initializeRectangle(Vertex(x,y),Vertex(x+width,y+height));
 }
 
 void Rectangle::initializeRectangle(const Vertex& bottomLeft, const Vertex& topRight)
@@ -53,10 +50,10 @@ bool Rectangle::isValidRectangle(const Vertex& bottomLeft, const Vertex& topRigh
 
 void Rectangle::draw(Board& board) const
 {
-    Vertex vertices[] = { m_bottomLeft,
+    Vertex vertices[] = {m_bottomLeft,
                           { m_topRight.m_col, m_bottomLeft.m_row },
                           m_topRight,
-                          { m_bottomLeft.m_col, m_topRight.m_row }};
+                          {m_bottomLeft.m_col, m_topRight.m_row }};
 
     for (int i = 0; i < 4; ++i) 
     {

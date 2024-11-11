@@ -4,7 +4,6 @@
 #include "Vertex.h"
 #include "Board.h"
 #include "Utilities.h"
-#include <cmath>
 #include "Rectangle.h"
 
 

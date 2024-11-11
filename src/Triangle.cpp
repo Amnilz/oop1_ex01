@@ -1,5 +1,6 @@
 #include "Triangle.h"
-
+#include <cmath>
+#include <cstdlib>
 
 
 Triangle::Triangle(const Vertex vertices[3])
@@ -15,7 +16,8 @@ Triangle::Triangle(Vertex v0, Vertex v1, Vertex v2)
 bool Triangle::isValidTriangle(const Vertex& v0, const Vertex& v1, const Vertex& v2) const 
 {
     return v0.isValid() && v1.isValid() && v2.isValid() && doubleEqual(v0.m_row, v1.m_row)&&
-        !doubleEqual(v0.m_row, v2.m_row);
+        !doubleEqual(v0.m_row, v2.m_row) && !((!sameRow(v0,v1) && !sameCol(v0,v1)) ||
+            (!sameRow(v1, v2) && !sameCol(v1, v2)) || (!sameRow(v2, v0) && !sameCol(v2, v0)));
 }
 
 void Triangle::initializeTriangle(const Vertex& v0, const Vertex& v1, const Vertex& v2)
